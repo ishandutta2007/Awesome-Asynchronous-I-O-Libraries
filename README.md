@@ -1,193 +1,122 @@
-# Awesome-Asynchronous-I-O-Libraries
+# Awesome Asynchronous I/O Libraries
 
-## Top Asynchronous I/O Libraries Ecosystem
+A curated directory of top-tier **Asynchronous I/O Libraries**, event-driven network frameworks, high-concurrency runtimes, and cloud SDKs. Focused on thread-per-core architectures, event loops, zero-copy socket programming, non-blocking network I/O, and cross-platform asynchronous runtimes.
 
-
-
-**Curated List of SaaS Products & Open-Source GitHub Projects**  
-
-*Focused on Event-Driven Networking, Thread-Per-Core Architectures & Cross-Platform I/O*  
-
-**Last updated: October 2026**
-
-
-
-This repository tracks notable **SaaS platforms** and **open-source projects** for **Asynchronous I/O Libraries**. These tools enable developers to build high-concurrency network servers and clients—from lightweight event loops powering Node.js to sophisticated thread-per-core frameworks handling millions of connections.
-
-
-
-**Examples** include Boost.Asio, libuv, libevent, POCO C++, ACE Framework, Seastar, Tokio, Netty, Twisted, and AsyncIO (the category leaders).
-
-
-
-**Open-source emphasis**: This section is heavily expanded with every major active project for self-hosting, event-driven architecture, and open I/O infrastructure—ideal for systems programmers, backend engineers, and architects seeking transparent, vendor-independent networking libraries.
-
-
-
-Contributions welcome! Open a PR to add/update entries. Keep descriptions factual and link to official sites.
-
-
-
-## Table of Contents
-
-- [SaaS/Hosted Platforms](#saas-hosted-platforms)
-
-- [Open-Source GitHub Projects](#open-source-github-projects)
-
-- [How to Contribute](#how-to-contribute)
-
-- [Disclaimer](#disclaimer)
-
-
-
-## SaaS/Hosted Platforms
-
-
-
-- **[AWS SDK for Python (Boto3)](https://aws.amazon.com/sdk-for-python/)**  
-
-  Native **asyncio support** across all service clients for non-blocking concurrent I/O operations. Features **credential-based authentication pipeline**, **long-running operation poller**, and **AutoRest-generated client code** from OpenAPI specifications .
-
-
-
-- **[Azure SDK for Python](https://azure.microsoft.com/)**  
-
-  **Async-first client design** supporting concurrent I/O operations without blocking the event loop. Features **credential-based authentication** and **native asyncio support** across all service clients .
-
-
-
-- **[Google Cloud Client Libraries](https://cloud.google.com/)**  
-
-  Async I/O support for Google Cloud services with **native asyncio integration** and **non-blocking operations**.
-
-
-
-## Open-Source GitHub Projects
-
-
-
-- **[libuv](https://github.com/libuv/libuv)**  
-
-  **Cross-platform asynchronous I/O** (MIT) . **The foundational library behind Node.js**—designed around the event-driven asynchronous I/O model . **Provides handles and requests** as high-level abstractions for sockets and other entities, plus **cross-platform file I/O and threading functionality** . **Event loop uses epoll on Linux, kqueue on macOS/BSD, event ports on SunOS, and IOCP on Windows** . **The event loop is not thread-safe**—one loop per thread, multiple loops run in different threads . **File I/O runs in a thread pool** since there are no platform-specific async file primitives . **The most widely deployed async I/O library** with 26.9k GitHub stars .
-
-
-
-- **[Boost.Asio](https://github.com/chriskohlhoff/asio)**  
-
-  **C++ library for network and low-level I/O operations** (Boost Software License) . **The Proactor reference implementation**—emulates completion semantics over epoll/kqueue on Unix, uses **native IOCP on Windows**, and has a **real io_uring service on Linux** . **Consistent asynchronous model** that avoids blocking program execution . **Portable, cross-platform interface** for network socket communication across operating systems . **Manages multiple asynchronous operations** without explicit thread management . **The standard C++ async I/O library** for complex business logic .
-
-
-
-- **[Seastar](https://github.com/scylladb/seastar)**  
-
-  **C++ framework for I/O intensive asynchronous computing** (Apache-2.0) . **The archetype of thread-per-core / share-nothing architecture**—runs **one application thread per core**, each with its own event loop (engine), memory allocator arena, and data slice . **No locks on the hot path** because there is nothing shared to lock . **Cross-core communication via explicit message passing** over lock-free SPSC queues (`smp::submit_to`, `invoke_on_all`) . **Yields the lowest, most predictable tail latency** and eliminates nearly all cache-coherency traffic . **Powers ScyllaDB, Redpanda, and Ceph Crimson** . **Supports C++20 and C++23** with last-two-versions support policy . **The reference for high-performance distributed systems** .
-
-
-
-- **[libevent](https://github.com/libevent/libevent)**  
-
-  **The original cross-platform event notification library** (BSD) . **Event_base manages the event loop**—events are organized in priority queues with configurable priorities . **bufferevent provides TCP read/write buffering** with built-in sticky/semi-packet handling . **Lightweight and focused**—used by memcached, Tor, and countless embedded systems . **Slower maintenance pace** compared to libuv, but **mature and battle-tested** . **Best for**: lightweight embedded gateways, resource-constrained devices, simple event dispatch .
-
-
-
-- **[Tokio](https://github.com/tokio-rs/tokio)**  
-
-  **Rust's dominant async runtime** (MIT) . **Readiness reactor over mio + work-stealing scheduler** . **io_uring support is unstable**—the default path uses readiness-based polling . **Work-stealing gives each worker a local run queue** plus a shared global queue for overflow . **LIFO slot** holds the most recently woken task for cache-hot continuation . **Periodic global-queue check** prevents starvation of globally-injected tasks . **The standard async runtime for Rust** .
-
-
-
-- **[Netty](https://github.com/netty/netty)**  
-
-  **Asynchronous event-driven network application framework for Java** (Apache-2.0) . **NioEventLoop is single-threaded**, one Selector per loop . **One Channel registered to one EventLoop**—serialized execution without thread context switching . **ChannelPipeline is a responsibility chain** of ChannelHandlers processing inbound/outbound events . **Ingeniously mitigates the JDK epoll 100% CPU bug** by detecting empty polls and rebuilding the Selector after 512 occurrences . **Task queue processing** with ordinary tasks, scheduled tasks, and tail tasks . **The standard Java network framework** .
-
-
-
-- **[Twisted](https://github.com/twisted/twisted)**  
-
-  **Event-driven networking engine for Python** (MIT) . **Reactor pattern**—the reactor drives all I/O, dispatching callbacks in a single thread without blocking . **Deferred promise chain** for composing asynchronous logic . **Protocol and factory pattern** separates connection state from protocol handling . **"Your methods should return quickly"**—the reactor calls everything, and blocking callbacks stall the entire loop . **The original Python async framework** .
-
-
-
-- **[POCO C++](https://github.com/pocoproject/poco)**  
-
-  **C++ class libraries for network-centric applications** (Boost Software License) . **More comprehensive network library than Boost.Asio** with higher-level protocol support (HTTP, SSL) . **Integrated library** with XML, database interface, logging, and thread management . **Cleaner, more understandable C++ code** than most Boost libraries . **Limited documentation** compared to Boost, and **smaller community** . **Best for**: teams needing an integrated C++ toolkit beyond networking .
-
-
-
-- **[ACE Framework](https://github.com/DOCGroup/ACE_TAO)**  
-
-  **The ADAPTIVE Communication Environment** (ACE license) . **Platform-independent C++ wrappers for all forms of IPC, thread- and process-management routines** . **Defines patterns for common communication tasks**: Reactor for event demultiplexing and dispatching, Proactor for asynchronous I/O driven programs . **The most comprehensive enterprise C++ networking framework**—mature but heavyweight .
-
-
-
-### Additional Strong Open-Source Options
-
-
-
-- **[uv-cpp](https://github.com/wlgq2/uv-cpp)** — libuv wrapper in C++11 (open-source) . **Benchmarks show comparable performance to Boost.Asio** in ping-pong tests—16,138 kbyte vs 16,119 kbyte at 1K packet size .
-
-- **[Wangle](https://github.com/facebook/wangle)** — C++ networking library providing client/server abstractions for building consistent, modular, composable services (Apache-2.0) . **3.1k GitHub stars** .
-
-- **[ZeroMQ](https://github.com/zeromq/libzmq)** — Lightweight messaging kernel extending socket interfaces with asynchronous message queues (MPL-2.0) . **10.9k GitHub stars** .
-
-- **[ActiveJ](https://github.com/activej/activej)** — Modern Java platform with high-performance async I/O, HTTP server/client, and dependency injection (Apache-2.0) .
-
-- **[c-ares](https://github.com/c-ares/c-ares)** — C library for asynchronous DNS resolution (MIT) . **2.2k GitHub stars** .
-
-- **[vibe.d](https://github.com/vibe-d/vibe.d)** — High-performance async I/O and web toolkit in D (MIT) .
-
-- Community **n8n** workflows for network monitoring and async task orchestration.
-
-
-
-**Frameworks for building custom systems**: Combine **libuv** for cross-platform event-driven I/O with **Boost.Asio** for C++ async operations, **Seastar** for thread-per-core high-performance servers, **Tokio** for Rust async applications, and **Netty** for Java network services—creating a comprehensive multi-language async I/O stack.
-
-
-
-## How to Contribute
-
-
-
-1. Fork the repo.
-
-2. Add/edit entries in `README.md` (follow existing format).
-
-3. Include: name, link, 1–2 sentence description, and whether it's SaaS or open-source.
-
-4. Submit PR with a short explanation.
-
-
-
-Star the repo if you find it useful!
-
-
-
-## Disclaimer
-
-
-
-- This is a **community-curated** list — not exhaustive and not an endorsement.
-
-- Asynchronous I/O libraries handling production network traffic must follow security best practices and comply with applicable regulations.
-
-- **Architecture choice determines performance characteristics more than library brand.** Seastar's thread-per-core share-nothing model delivers the **lowest, most predictable tail latency** because there are no locks on the hot path . Work-stealing (Tokio) offers **automatic load balancing** but higher tail latency variance from steal jitter . **Choose based on workload shape: uniform/partitionable favors thread-per-core; uneven tasks favor work-stealing.**
-
-- **io_uring is the emerging differentiator on Linux.** Benchmarks show **uvent + io_uring at 1-2 threads is 20-38% faster than Boost.Asio** and 32-33% faster than libuv . However, **Boost.Asio and libuv do not expose io_uring by default**—Tokio's io_uring support is unstable .
-
-- **The event loop is not thread-safe.** libuv, libevent, and libev all require **one loop per thread**—callbacks execute serially with no parallelism within a single loop . **Never block the event loop**—Netty and Twisted both warn that blocking callbacks stall all subsequent I/O .
-
-- **Memory model matters for Seastar.** Each thread is **preallocated a large piece of memory** (default: all memory minus 1.5G or 7% reservation for OS) on its NUMA node . **Cross-shard communication uses explicit message passing** over lock-free SPSC queues—no shared memory between threads .
-
-- **libuv has no native SSL/TLS support.** You need to bring your own (OpenSSL, BoringSSL) or use a wrapper . **Boost.Asio has native SSL support** via OpenSSL.
-
-- Self-hosted open-source solutions require proper security hardening, resource management, and ongoing maintenance. **Async I/O libraries are the foundation of network services**—misconfiguration can cause cascading failures under load.
-
-
+[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/ishandutta2007/Awesome-Asynchronous-I-O-Libraries/pulls)
 
 ---
 
+## Table of Contents
 
+- [Sector Overview & Market Dynamics](#sector-overview--market-dynamics)
+- [SaaS & Hosted Platforms](#saas--hosted-platforms)
+- [Open-Source GitHub Projects](#open-source-github-projects)
+- [Architecture & Design Comparisons](#architecture--design-comparisons)
+- [How to Contribute](#how-to-contribute)
+- [Disclaimer & Best Practices](#disclaimer--best-practices)
 
-**Made for systems programmers, backend engineers, and architects building transparent async I/O solutions.**  
+---
 
-Let's make Asynchronous I/O Libraries more open, data-driven, and lock-free.
+## Sector Overview & Market Dynamics
+
+The global cloud systems infrastructure and asynchronous backend networking market is estimated at **$180+ billion**, driven by cloud-native microservices, real-time messaging, IoT ingestion, and high-frequency streaming workloads. The managed cloud platform and SDK layer is **highly concentrated and oligopolistic** (dominated by hyperscalers like Microsoft Azure, AWS, and Google Cloud holding over 65% aggregate market share), whereas the underlying open-source asynchronous engine ecosystem is **moderately fragmented**, with specialized runtimes bifurcated across language paradigms (e.g., Tokio for Rust, Netty for Java, libuv for Node.js/C, and Seastar for thread-per-core C++ architectures).
+
+---
+
+## SaaS & Hosted Platforms
+
+The table below lists major cloud and SaaS platforms providing asynchronous I/O software development kits (SDKs), sorted descending by company scale (market capitalization/valuation):
+
+| Platform | Provider / Company | Company Scale (Market Cap / Valuation) | Pricing (Starting Tier) | Free Tier Limits | Key Async I/O Features |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **[Azure SDK for Python](https://azure.microsoft.com/)** | Microsoft | ~$3.10 Trillion | $0.0008/hour (App Service B1 Linux) or Pay-As-You-Go per consumed resource | **Free Account**: 30 days $200 credit + 12 months select services (e.g., 750 hrs B1S VM, 5 GB LRS storage) + Always-Free tier (1M Azure Functions requests/mo, 10 App Service apps) | Async-first HTTP pipeline, `aiohttp` transport integration, token-based authentication with non-blocking credential refreshment, and native `asyncio` streams. |
+| **[AWS SDK for Python (Boto3 / Aiobotocore)](https://aws.amazon.com/sdk-for-python/)** | Amazon Web Services (Amazon) | ~$1.95 Trillion | $0.0000166667 per GB-second (AWS Lambda) or Pay-As-You-Go per service | **Free Tier**: 3 Months / 12 Months free + Always Free (1M AWS Lambda requests/mo, 3.2M sec compute, 5 GB S3 standard storage for 12 months) | Full asynchronous non-blocking support through `aiobotocore`/`aioboto3`, AutoRest-generated clients, async long-running operation pollers, and proactive credential refresh. |
+| **[Google Cloud Client Libraries](https://cloud.google.com/)** | Google Cloud (Alphabet) | ~$2.05 Trillion | $0.0000025 per Cloud Run invocation (vCPU $0.00002400/sec) or Pay-As-You-Go | **Free Tier**: 90-day $300 credit trial + Always Free (2M Cloud Run requests/mo, 28 instance-hrs/day App Engine, 1 f1-micro compute instance/mo) | Native `asyncio` and gRPC async I/O transports, non-blocking bidirectional streaming, event-driven Pub/Sub consumers, and zero-blocking HTTP/2 clients. |
+
+---
+
+## Open-Source GitHub Projects
+
+Curated open-source asynchronous I/O frameworks, reactors, proactors, and runtimes, sorted descending by GitHub star count:
+
+| Project | GitHub Stars | Language | License | Architecture & Core Capabilities |
+| :--- | :--- | :--- | :--- | :--- |
+| **[Netty](https://github.com/netty/netty)** | [![GitHub stars](https://img.shields.io/github/stars/netty/netty?style=social&color=white)](https://github.com/netty/netty/stargazers) | Java | Apache-2.0 | Asynchronous event-driven network application framework. Features `NioEventLoop` (single thread with one Selector), zero-copy buffer pooling (`ByteBuf`), pipeline handler chain architecture, and built-in protection against the JDK epoll 100% CPU bug. |
+| **[Tokio](https://github.com/tokio-rs/tokio)** | [![GitHub stars](https://img.shields.io/github/stars/tokio-rs/tokio?style=social&color=white)](https://github.com/tokio-rs/tokio/stargazers) | Rust | MIT | Rust's premier async runtime. Built on a readiness reactor over `mio` combined with a multi-threaded work-stealing task scheduler, LIFO execution slot for cache locality, and timer wheels for high-throughput network tasks. |
+| **[libuv](https://github.com/libuv/libuv)** | [![GitHub stars](https://img.shields.io/github/stars/libuv/libuv?style=social&color=white)](https://github.com/libuv/libuv/stargazers) | C | MIT | Cross-platform asynchronous I/O engine powering Node.js. Abstracted handles/requests over Linux `epoll`, macOS/BSD `kqueue`, Windows `IOCP`, and Solaris `event ports`. Features thread pool delegation for non-blocking file operations and DNS resolution. |
+| **[uWebSockets](https://github.com/uNetworking/uWebSockets)** | [![GitHub stars](https://img.shields.io/github/stars/uNetworking/uWebSockets?style=social&color=white)](https://github.com/uNetworking/uWebSockets/stargazers) | C++ / C | Apache-2.0 | Ultra-high performance, memory-efficient WebSocket and HTTP server library. Leverages `uSockets` eventing layer with minimal memory footprint per connection, outperforming standard event loops under massive concurrency. |
+| **[Swoole](https://github.com/swoole/swoole-src)** | [![GitHub stars](https://img.shields.io/github/stars/swoole/swoole-src?style=social&color=white)](https://github.com/swoole/swoole-src/stargazers) | C++ / PHP | Apache-2.0 | Production-grade coroutine-based asynchronous networking engine for PHP. Provides native async TCP/UDP/Unix socket servers, HTTP/WebSocket servers, coroutine schedulers, and zero-downtime connection pooling. |
+| **[libevent](https://github.com/libevent/libevent)** | [![GitHub stars](https://img.shields.io/github/stars/libevent/libevent?style=social&color=white)](https://github.com/libevent/libevent/stargazers) | C | BSD-3-Clause | Battle-tested event notification engine. Provides `event_base` priority scheduling and `bufferevent` abstractions for automatic packet buffering and SSL wrapping. Backs core production infrastructure such as Memcached and Tor. |
+| **[uvloop](https://github.com/MagicStack/uvloop)** | [![GitHub stars](https://img.shields.io/github/stars/MagicStack/uvloop?style=social&color=white)](https://github.com/MagicStack/uvloop/stargazers) | Cython / C | MIT / Apache-2.0 | Ultra-fast drop-in replacement for the default Python `asyncio` event loop implemented in Cython on top of `libuv`. Delivers 2-4x speedup, matching Node.js and Go networking performance benchmarks. |
+| **[ZeroMQ (libzmq)](https://github.com/zeromq/libzmq)** | [![GitHub stars](https://img.shields.io/github/stars/zeromq/libzmq?style=social&color=white)](https://github.com/zeromq/libzmq/stargazers) | C++ | MPL-2.0 | High-performance asynchronous messaging library providing socket abstraction over in-process, IPC, TCP, TIPC, and multicast. Eliminates message brokers through smart asynchronous patterns (pub/sub, push/pull, req/rep). |
+| **[POCO C++ Libraries](https://github.com/pocoproject/poco)** | [![GitHub stars](https://img.shields.io/github/stars/pocoproject/poco?style=social&color=white)](https://github.com/pocoproject/poco/stargazers) | C++ | BSL-1.0 | Comprehensive network-centric C++ class libraries. Features portable socket reactors, multi-threaded task management, cryptographic protocol engines, and high-level async client/server HTTP abstractions. |
+| **[Seastar](https://github.com/scylladb/seastar)** | [![GitHub stars](https://img.shields.io/github/stars/scylladb/seastar?style=social&color=white)](https://github.com/scylladb/seastar/stargazers) | C++ | Apache-2.0 | Groundbreaking thread-per-core (share-nothing) architecture for microsecond tail latency. Allocates one loop per core with lockless SPSC ring buffers, user-space CPU scheduling, and native DMA disk I/O. Powers ScyllaDB and Redpanda. |
+| **[Actix](https://github.com/actix/actix)** | [![GitHub stars](https://img.shields.io/github/stars/actix/actix?style=social&color=white)](https://github.com/actix/actix/stargazers) | Rust | MIT / Apache-2.0 | Actor framework for Rust built on Tokio. Provides message-passing concurrency, asynchronous actor supervisor hierarchies, and zero-allocation message pipelines for ultra-low latency services. |
+| **[Boost.Asio](https://github.com/chriskohlhoff/asio)** | [![GitHub stars](https://img.shields.io/github/stars/chriskohlhoff/asio?style=social&color=white)](https://github.com/chriskohlhoff/asio/stargazers) | C++ | BSL-1.0 | The canonical C++ Proactor pattern implementation. Provides cross-platform asynchronous socket programming, timers, SSL support, and modern integration with C++20 coroutines, Linux `io_uring`, and Windows `IOCP`. |
+| **[Twisted](https://github.com/twisted/twisted)** | [![GitHub stars](https://img.shields.io/github/stars/twisted/twisted?style=social&color=white)](https://github.com/twisted/twisted/stargazers) | Python | MIT | Foundational event-driven Python networking engine. Introduced the Reactor and Deferred patterns to Python, offering protocols for TCP, UDP, SSL/TLS, HTTP, IMAP, SSH, and IRC. |
+| **[liburing](https://github.com/axboe/liburing)** | [![GitHub stars](https://img.shields.io/github/stars/axboe/liburing?style=social&color=white)](https://github.com/axboe/liburing/stargazers) | C | LGPL-2.1 / MIT | The official Linux kernel user-space wrapper library for `io_uring`. Simplifies submission and completion queue ring access, enabling true zero-copy, non-blocking asynchronous system calls across storage and network sockets. |
+| **[Wangle](https://github.com/facebook/wangle)** | [![GitHub stars](https://img.shields.io/github/stars/facebook/wangle?style=social&color=white)](https://github.com/facebook/wangle/stargazers) | C++ | Apache-2.0 | Meta's C++ asynchronous client/server application framework. Provides composable pipeline stages, protocol multiplexing, and connection pool management built on top of `Folly`. |
+| **[c-ares](https://github.com/c-ares/c-ares)** | [![GitHub stars](https://img.shields.io/github/stars/c-ares/c-ares?style=social&color=white)](https://github.com/c-ares/c-ares/stargazers) | C | MIT | Dedicated C library for asynchronous DNS name resolution and queries, bypassing blocking OS resolver calls inside custom event loops. Powers curl, Node.js, and gRPC. |
+| **[vibe.d](https://github.com/vibe-d/vibe.d)** | [![GitHub stars](https://img.shields.io/github/stars/vibe-d/vibe.d?style=social&color=white)](https://github.com/vibe-d/vibe.d/stargazers) | D | MIT | High-performance asynchronous I/O and web framework for the D programming language. Leverages fiber-based coroutines for sequential coding aesthetics with underlying non-blocking socket performance. |
+| **[ActiveJ](https://github.com/activej/activej)** | [![GitHub stars](https://img.shields.io/github/stars/activej/activej?style=social&color=white)](https://github.com/activej/activej/stargazers) | Java | Apache-2.0 | High-performance alternative Java platform engineered for ultra-fast I/O, minimalist memory overhead, zero-cost dependency injection, and lean asynchronous event loop dispatching. |
+| **[uv-cpp](https://github.com/wlgq2/uv-cpp)** | [![GitHub stars](https://img.shields.io/github/stars/wlgq2/uv-cpp?style=social&color=white)](https://github.com/wlgq2/uv-cpp/stargazers) | C++ | MIT | Lightweight modern C++11 wrapper for `libuv`. Encapsulates event loops, timers, TCP clients/servers, and UDP sockets in idiomatic object-oriented interfaces. |
+| **[ACE (ADAPTIVE Communication Environment)](https://github.com/DOCGroup/ACE_TAO)** | [![GitHub stars](https://img.shields.io/github/stars/DOCGroup/ACE_TAO?style=social&color=white)](https://github.com/DOCGroup/ACE_TAO/stargazers) | C++ | ACE-TAO License | Highly mature, comprehensive enterprise object-oriented C++ framework implementing classic Reactor, Proactor, Acceptor-Connector, and Service Configurator concurrency patterns. |
+
+---
+
+## Architecture & Design Comparisons
+
+Understanding the underlying I/O multiplexing mechanism and threading model is vital when designing low-latency network servers:
+
+```
++-----------------------------------------------------------------------------------------+
+|                                    Application Code                                     |
++-----------------------------------------------------------------------------------------+
+       |                                           |                                |
+       v                                           v                                v
++------------------+                     +------------------+             +------------------+
+|   Reactor Model  |                     |  Proactor Model  |             |  Thread-Per-Core |
+| (libuv, libevent,|                     |  (Boost.Asio,    |             |    (Seastar)     |
+|   Netty, Tokio)  |                     |   Windows IOCP)  |             |                  |
++------------------+                     +------------------+             +------------------+
+       |                                           |                                |
+       | Non-blocking Readiness                   | Completion Notification        | Dedicated Core +
+       | (epoll / kqueue / poll)                  | (IOCP / Linux io_uring)        | Lockless Ring Buffer
+       v                                           v                                v
++-----------------------------------------------------------------------------------------+
+|                                Operating System Kernel / Hardware                       |
++-----------------------------------------------------------------------------------------+
+```
+
+### Key Concurrency Models
+1. **Reactor Pattern (Readiness-based)**:
+   - Synchronous event demultiplexing via `epoll` (Linux) or `kqueue` (macOS/BSD).
+   - The loop signals when a file descriptor is *ready* to be read or written; the application performs the non-blocking I/O operation.
+   - *Representatives*: **libuv**, **libevent**, **Netty**, **Tokio**.
+2. **Proactor Pattern (Completion-based)**:
+   - Asynchronous I/O execution where the OS or framework initiates the operation and notifies when *completed*.
+   - *Representatives*: **Windows IOCP**, **Boost.Asio**, **liburing**.
+3. **Thread-Per-Core / Shared-Nothing Architecture**:
+   - Pins one thread per CPU core, isolating CPU caches and removing mutex contention across worker loops. Inter-core communication occurs strictly over lockless single-producer single-consumer (SPSC) ring queues.
+   - *Representatives*: **Seastar**.
+
+---
+
+## How to Contribute
+
+We welcome additions, corrections, and benchmark submissions:
+
+1. Fork this repository.
+2. Edit `README.md` to add your library or SaaS SDK following the established table structure.
+3. Ensure every open-source entry includes a valid GitHub repository, social-style stars badge, license, and architectural summary.
+4. Open a Pull Request with a brief description of the project and why it belongs in the list.
+
+---
+
+## Disclaimer & Best Practices
+
+- This is a community-curated directory intended for engineering research and evaluation.
+- Asynchronous I/O systems operating at high concurrency must adhere to sound memory management and socket buffer tuning (e.g., `SO_REUSEPORT`, `TCP_NODELAY`, file descriptor limits via `ulimit -n`).
+- **Never block the event loop**: Avoid blocking operations (e.g., synchronous file access, intensive computation, or locking calls) on event loop threads to prevent latency spikes and starvation across all multiplexed connections.
