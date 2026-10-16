@@ -1,35 +1,45 @@
-# Awesome Asynchronous I/O Libraries
+# Awesome Asynchronous I/O Libraries 🚀⚡
 
-A curated directory of top-tier **Asynchronous I/O Libraries**, event-driven network frameworks, high-concurrency runtimes, and cloud SDKs. Focused on thread-per-core architectures, event loops, zero-copy socket programming, non-blocking network I/O, and cross-platform asynchronous runtimes.
+<p align="center">
+  <img src="assets/banner.svg" alt="Awesome Asynchronous I/O Libraries Banner" width="100%" />
+</p>
 
-[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/ishandutta2007/Awesome-Asynchronous-I-O-Libraries/pulls)
+<p align="center">
+  <a href="https://github.com/ishandutta2007/Awesome-Awesome-Awesome"><img src="https://img.shields.io/badge/Awesome-%E2%9C%94-blueviolet?style=flat-square&logo=github" alt="Awesome"/></a><a href="https://discord.gg/jc4xtF58Ve"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" /></a>
+  <a href="https://awesome.re"><img src="https://awesome.re/badge.svg" alt="Awesome" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT" /></a>
+  <a href="https://github.com/ishandutta2007/Awesome-Asynchronous-I-O-Libraries/pulls"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome" /></a>
+  <a href="https://github.com/ishandutta2007"><img alt="GitHub followers" src="https://img.shields.io/github/followers/ishandutta2007?label=Follow" /></a>
+</p>
 
----
-
-## Table of Contents
-
-- [Sector Overview & Market Dynamics](#sector-overview--market-dynamics)
-- [SaaS & Hosted Platforms](#saas--hosted-platforms)
-- [Open-Source GitHub Projects](#open-source-github-projects)
-- [Architecture & Design Comparisons](#architecture--design-comparisons)
-- [How to Contribute](#how-to-contribute)
-- [Disclaimer & Best Practices](#disclaimer--best-practices)
+A curated directory of top-tier **Asynchronous I/O Libraries**, event-driven network frameworks, high-concurrency runtimes, and cloud SDKs 🌐. Focused on thread-per-core architectures, event loops, zero-copy socket programming, non-blocking network I/O, and cross-platform asynchronous runtimes ⚙️.
 
 ---
 
-## Sector Overview & Market Dynamics
+## 📑 Table of Contents
 
-The global cloud systems infrastructure and asynchronous backend networking market is estimated at **$180+ billion**, driven by cloud-native microservices, real-time messaging, IoT ingestion, and high-frequency streaming workloads. The managed cloud platform and SDK layer is **highly concentrated and oligopolistic** (dominated by hyperscalers like Microsoft Azure, AWS, and Google Cloud holding over 65% aggregate market share), whereas the underlying open-source asynchronous engine ecosystem is **moderately fragmented**, with specialized runtimes bifurcated across language paradigms (e.g., Tokio for Rust, Netty for Java, libuv for Node.js/C, and Seastar for thread-per-core C++ architectures).
+- [🌐 Sector Overview & Market Dynamics](#-sector-overview--market-dynamics)
+- [☁️ SaaS & Hosted Platforms](#️-saas--hosted-platforms)
+- [💻 Open-Source GitHub Projects](#-open-source-github-projects)
+- [🏗️ Architecture & Design Comparisons](#️-architecture--design-comparisons)
+- [🤝 How to Contribute](#-how-to-contribute)
+- [⭐ Star History](#star-history)
+- [💖 Support](#-support)
+- [⚠️ Disclaimer & Best Practices](#️-disclaimer--best-practices)
 
 ---
 
-## SaaS & Hosted Platforms
+## 🌐 Sector Overview & Market Dynamics
 
-The table below lists major cloud and SaaS platforms providing asynchronous I/O software development kits (SDKs), sorted descending by company scale (market capitalization/valuation):
+The global cloud systems infrastructure and asynchronous backend networking market is estimated at **$180+ billion** 📈, driven by cloud-native microservices, real-time messaging, IoT ingestion, and high-frequency streaming workloads. The managed cloud platform and SDK layer is **highly concentrated and oligopolistic** (dominated by hyperscalers like Microsoft Azure, AWS, and Google Cloud holding over 65% aggregate market share 🏢), whereas the underlying open-source asynchronous engine ecosystem is **moderately fragmented** 🧩, with specialized runtimes bifurcated across language paradigms (e.g., Tokio for Rust, Netty for Java, libuv for Node.js/C, and Seastar for thread-per-core C++ architectures).
 
-| Platform | Provider / Company | Company Scale (Market Cap / Valuation) | Pricing (Starting Tier) | Free Tier Limits | Key Async I/O Features |
+---
+
+## ☁️ SaaS & Hosted Platforms
+
+The table below lists major cloud and SaaS platforms providing asynchronous I/O software development kits (SDKs), sorted descending by company scale (market capitalization/valuation) 📊:
+
+| Platform 🛠️ | Provider / Company 🏢 | Company Scale (Market Cap / Valuation) 💰 | Pricing (Starting Tier) 🏷️ | Free Tier Limits 🎁 | Key Async I/O Features ⚡ |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **[Azure SDK for Python](https://azure.microsoft.com/)** | Microsoft | ~$3.10 Trillion | $0.0008/hour (App Service B1 Linux) or Pay-As-You-Go per consumed resource | **Free Account**: 30 days $200 credit + 12 months select services (e.g., 750 hrs B1S VM, 5 GB LRS storage) + Always-Free tier (1M Azure Functions requests/mo, 10 App Service apps) | Async-first HTTP pipeline, `aiohttp` transport integration, token-based authentication with non-blocking credential refreshment, and native `asyncio` streams. |
 | **[AWS SDK for Python (Boto3 / Aiobotocore)](https://aws.amazon.com/sdk-for-python/)** | Amazon Web Services (Amazon) | ~$1.95 Trillion | $0.0000166667 per GB-second (AWS Lambda) or Pay-As-You-Go per service | **Free Tier**: 3 Months / 12 Months free + Always Free (1M AWS Lambda requests/mo, 3.2M sec compute, 5 GB S3 standard storage for 12 months) | Full asynchronous non-blocking support through `aiobotocore`/`aioboto3`, AutoRest-generated clients, async long-running operation pollers, and proactive credential refresh. |
@@ -37,11 +47,11 @@ The table below lists major cloud and SaaS platforms providing asynchronous I/O 
 
 ---
 
-## Open-Source GitHub Projects
+## 💻 Open-Source GitHub Projects
 
-Curated open-source asynchronous I/O frameworks, reactors, proactors, and runtimes, sorted descending by GitHub star count:
+Curated open-source asynchronous I/O frameworks, reactors, proactors, and runtimes, sorted descending by GitHub star count ⭐:
 
-| Project | GitHub Stars | Language | License | Architecture & Core Capabilities |
+| Project 📦 | GitHub Stars 🌟 | Language 💻 | License 📜 | Architecture & Core Capabilities 🔍 |
 | :--- | :--- | :--- | :--- | :--- |
 | **[Netty](https://github.com/netty/netty)** | [![GitHub stars](https://img.shields.io/github/stars/netty/netty?style=social&color=white)](https://github.com/netty/netty/stargazers) | Java | Apache-2.0 | Asynchronous event-driven network application framework. Features `NioEventLoop` (single thread with one Selector), zero-copy buffer pooling (`ByteBuf`), pipeline handler chain architecture, and built-in protection against the JDK epoll 100% CPU bug. |
 | **[Tokio](https://github.com/tokio-rs/tokio)** | [![GitHub stars](https://img.shields.io/github/stars/tokio-rs/tokio?style=social&color=white)](https://github.com/tokio-rs/tokio/stargazers) | Rust | MIT | Rust's premier async runtime. Built on a readiness reactor over `mio` combined with a multi-threaded work-stealing task scheduler, LIFO execution slot for cache locality, and timer wheels for high-throughput network tasks. |
@@ -66,9 +76,9 @@ Curated open-source asynchronous I/O frameworks, reactors, proactors, and runtim
 
 ---
 
-## Architecture & Design Comparisons
+## 🏗️ Architecture & Design Comparisons
 
-Understanding the underlying I/O multiplexing mechanism and threading model is vital when designing low-latency network servers:
+Understanding the underlying I/O multiplexing mechanism and threading model is vital when designing low-latency network servers 🔌:
 
 ```
 +-----------------------------------------------------------------------------------------+
@@ -90,33 +100,51 @@ Understanding the underlying I/O multiplexing mechanism and threading model is v
 +-----------------------------------------------------------------------------------------+
 ```
 
-### Key Concurrency Models
-1. **Reactor Pattern (Readiness-based)**:
+### 🔑 Key Concurrency Models
+1. **Reactor Pattern (Readiness-based)** 🔄:
    - Synchronous event demultiplexing via `epoll` (Linux) or `kqueue` (macOS/BSD).
    - The loop signals when a file descriptor is *ready* to be read or written; the application performs the non-blocking I/O operation.
    - *Representatives*: **libuv**, **libevent**, **Netty**, **Tokio**.
-2. **Proactor Pattern (Completion-based)**:
+2. **Proactor Pattern (Completion-based)** 📬:
    - Asynchronous I/O execution where the OS or framework initiates the operation and notifies when *completed*.
    - *Representatives*: **Windows IOCP**, **Boost.Asio**, **liburing**.
-3. **Thread-Per-Core / Shared-Nothing Architecture**:
+3. **Thread-Per-Core / Shared-Nothing Architecture** ⚡:
    - Pins one thread per CPU core, isolating CPU caches and removing mutex contention across worker loops. Inter-core communication occurs strictly over lockless single-producer single-consumer (SPSC) ring queues.
    - *Representatives*: **Seastar**.
 
 ---
 
-## How to Contribute
+## 🤝 How to Contribute
 
-We welcome additions, corrections, and benchmark submissions:
+We welcome additions, corrections, and benchmark submissions 🙌:
 
-1. Fork this repository.
+1. Fork this repository 🍴.
 2. Edit `README.md` to add your library or SaaS SDK following the established table structure.
 3. Ensure every open-source entry includes a valid GitHub repository, social-style stars badge, license, and architectural summary.
-4. Open a Pull Request with a brief description of the project and why it belongs in the list.
+4. Open a Pull Request with a brief description of the project and why it belongs in the list 🚀.
 
 ---
 
-## Disclaimer & Best Practices
+##  Star History
 
-- This is a community-curated directory intended for engineering research and evaluation.
+[![Star History Chart](https://star-history.dera.page/svg?repos=ishandutta2007/Awesome-Asynchronous-I-O-Libraries&type=date&legend=top-left)](https://star-history.dera.page/#ishandutta2007/Awesome-Asynchronous-I-O-Libraries&type=date&legend=top-left)
+
+---
+
+## 💖 Support
+
+A huge thank you to all contributors, maintainers, and systems engineers advancing high-concurrency non-blocking I/O! 🙏
+
+If you find this curated directory helpful:
+- ⭐ **Star** this repository to keep track of new async I/O updates!
+- 🍴 **Fork** and contribute your favorite frameworks!
+- 📢 **Share** with backend engineers, distributed systems developers, and systems architects!
+- ☕ Consider buying a coffee and supporting development via the [GitHub Sponsor Dashboard](https://github.com/sponsors/ishandutta2007)!
+
+---
+
+## ⚠️ Disclaimer & Best Practices
+
+- This is a community-curated directory intended for engineering research and evaluation 📋.
 - Asynchronous I/O systems operating at high concurrency must adhere to sound memory management and socket buffer tuning (e.g., `SO_REUSEPORT`, `TCP_NODELAY`, file descriptor limits via `ulimit -n`).
-- **Never block the event loop**: Avoid blocking operations (e.g., synchronous file access, intensive computation, or locking calls) on event loop threads to prevent latency spikes and starvation across all multiplexed connections.
+- **Never block the event loop** 🛑: Avoid blocking operations (e.g., synchronous file access, intensive computation, or locking calls) on event loop threads to prevent latency spikes and starvation across all multiplexed connections.
